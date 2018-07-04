@@ -8,9 +8,12 @@ portuguese_bot = ChatBot(
                  "Chatterbot",
                   storage_adapter="chatterbot.storage.SQLStorageAdapter",
                   logic_adapters=[
-                    'chatterbot.logic.MathematicalEvaluation',
-                    'chatterbot.logic.TimeLogicAdapter',
-                    'chatterbot.logic.BestMatch'
+                    'chatterbot.logic.BestMatch',
+                    {
+                        'import_path': 'chatterbot.logic.LowConfidenceAdapter',
+                        'threshold': 0.65,
+                        'default_response': 'Desculpa, eu não entendi!'
+                    }
                   ])
 
 portuguese_bot.set_trainer(ChatterBotCorpusTrainer)
